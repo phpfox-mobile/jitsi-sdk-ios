@@ -52,16 +52,30 @@
 -    (BOOL)application:(UIApplication *_Nonnull)application
   continueUserActivity:(NSUserActivity *_Nonnull)userActivity
     restorationHandler:(void (^_Nullable)(NSArray<id<UIUserActivityRestoring>> *_Nonnull))restorationHandler;
-
+    
 -    (BOOL)application:(UIApplication *_Nonnull)application
   continueUserActivity:(NSUserActivity *_Nonnull)userActivity
                options:(JitsiMeetConferenceOptions *_Nonnull)options;
+
 
 - (BOOL)application:(UIApplication *_Nonnull)app
             openURL:(NSURL *_Nonnull)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *_Nonnull)options;
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application
+  supportedInterfaceOrientationsForWindow:(UIWindow *)window;
+
 #pragma mark - Utility methods
+
+/**
+ * Once  the react native bridge is destroyed you are responsible for reinstantiating it back. Use this method to do so.
+ */
+- (void)instantiateReactNativeBridge;
+
+/**
+ * Helper method to destroy the react native bridge, cleaning up resources in the process. Once the react native bridge is destroyed you are responsible for reinstantiating it back using `instantiateReactNativeBridge` method.
+ */
+- (void)destroyReactNativeBridge;
 
 - (JitsiMeetConferenceOptions *_Nonnull)getInitialConferenceOptions;
 
